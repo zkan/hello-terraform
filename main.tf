@@ -1,3 +1,7 @@
+variable "gce_ssh_user" {
+  default = "rocket"
+}
+
 provider "google" {
   credentials = "${file("prontotools-9ee97f835c35.json")}"
   project = "prontotools-212000"
@@ -14,6 +18,10 @@ resource "google_compute_instance" "tf_instance" {
       image = "ubuntu-1804-bionic-v20190514"
       size  = 30
     }
+  }
+
+  metadata = {
+    sshKeys = "${var.gce_ssh_user}:${file("~/.ssh/rocket.pub")}"
   }
 
   network_interface {
