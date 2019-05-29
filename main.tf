@@ -1,7 +1,3 @@
-variable "gce_ssh_user" {
-  default = "rocket"
-}
-
 provider "google" {
   credentials = "${file("prontotools-9ee97f835c35.json")}"
   project = "prontotools-212000"
